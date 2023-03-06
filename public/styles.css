@@ -71,10 +71,9 @@ header{
 /* Hero */
 .container.hero{
   height: 500px;
-  margin-top: 4rem;
+  margin-top: 2rem;
   justify-content: space-around;
   border-radius: 20px;
-  box-shadow: 0 3px 10px black;
   background-color: var(--primary-color);
 }
 
@@ -84,9 +83,13 @@ header{
 }
 
 .hero-image{
-  height: 50%;
-  width: 50%;
-  border: 1px solid black;
+  height: 60%;
+  width: 60%;
+  border-radius: 80%;
+  padding-left: 90px;
+  background-image: url('./Harmony.png');
+  background-size: contain;
+  background-position: center;
 }
 
 /* Utility */
@@ -97,13 +100,20 @@ header{
 
 .utility .container{
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 10px;
 
 }
 
-.utility .container .card{
+.utility .container .flex{
+  flex-flow: column nowrap;
+  justify-content: center;
+}
 
+
+.utility .container .flex p{
+  width: 70%;
+  text-align: center;
 }
 /******************************************
 /* ADDITIONAL STYLES
