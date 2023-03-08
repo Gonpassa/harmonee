@@ -39,8 +39,6 @@ const server = http.createServer((req, res) => {
     }
 
     //log the filePath
-    console.log(filePath);
-    console.log(contentType)
     //Read File
     fs.readFile(filePath, (err, content) => {
         if(err){

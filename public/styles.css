@@ -83,13 +83,14 @@ header{
 }
 
 .hero-image{
-  height: 60%;
+  height: 66%;
   width: 60%;
-  border-radius: 80%;
+  border-radius: 50%;
   padding-left: 90px;
   background-image: url('./Harmony.png');
   background-size: contain;
   background-position: center;
+  background-repeat: repeat;
 }
 
 /* Utility */
@@ -114,6 +115,35 @@ header{
 .utility .container .flex p{
   width: 70%;
   text-align: center;
+}
+
+/* Register */
+.register.container{
+  margin: 50px auto;
+  width: 400px;
+  height: 400px;
+}
+
+.register form{
+  display: flex;
+  flex-flow: column nowrap;
+  width: 300px;
+  height: 200px;
+  background-color: #fff;
+}
+
+.register .form-control{
+  border: 0;
+  width: 100%;
+  font-size: 20px;
+  padding: 3px;
+  border-bottom: 1px solid #1D1E18;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.register-form input:focus{
+  outline: none;
 }
 /******************************************
 /* ADDITIONAL STYLES
