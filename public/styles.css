@@ -45,14 +45,16 @@ header{
   width: 100%;
 }
 
-.navbar span{
+.navbar img{
   height: 60px;
-  width: 100px;
+  width: 66px;
   background-image: url(./zen.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  margin: 0;
 }
+
 
 .navbar li{
   display: inline;
@@ -135,11 +137,10 @@ header{
 .register .form-control{
   border: 0;
   width: 100%;
-  font-size: 20px;
+  font-size: 1rem;
   padding: 3px;
   border-bottom: 1px solid #1D1E18;
   margin-bottom: 10px;
-  border-radius: 3px;
 }
 
 .register-form input:focus{
