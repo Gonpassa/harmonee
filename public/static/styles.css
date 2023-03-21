@@ -48,7 +48,6 @@ header{
 .navbar img{
   height: 60px;
   width: 66px;
-  background-image: url(./zen.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -89,7 +88,7 @@ header{
   width: 60%;
   border-radius: 50%;
   padding-left: 90px;
-  background-image: url('./Harmony.png');
+  background-image: url('../images/Harmony.png');
   background-size: contain;
   background-position: center;
   background-repeat: repeat;

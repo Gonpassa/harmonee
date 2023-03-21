@@ -42,6 +42,7 @@ const startServer = async () => {
         })
 
 
+
         //Start server here
         app.listen(PORT, function(){
             console.log(`listening on port ${PORT}`)
