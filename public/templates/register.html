@@ -1,42 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-    	<meta charset="utf-8">
-    	<meta name="description" content="This is where your description goes">
-    	<meta name="keywords" content="one, two, three">
+{% extends "template.html" %}
 
-		<title>Harmonee</title>
+{% block title%}
+Register
+{% endblock%}
 
-		<!-- external CSS link -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-		<link rel="stylesheet" href="./reset.css">
-		<link rel="stylesheet" href="./utilities.css">
-		<link rel="stylesheet" href="./styles.css">
-	</head>
-	<body class="bg-primary" >
-        <!-- Navbar -->
-        <header>
-            <div class="navbar bg-action">
-				<div class="flex container">
-					<a href="/"><img src="../zen.png" alt="logo"></img></a>
-					<ul>
-						<li><a href="login.html" class="text-secondary bold">Login</a></li>
-						<li><a href="register.html" class="text-secondary bold">Register</a></li>
-					</ul>
-				</div>
-            </div>
-        </header>
-		<!-- Register -->
-		<section class="container register flex">
-			<form action="/register" method="POST" class="register-form card">
-                <input type="text" autocomplete="off" autofocus placeholder="Username" class="form-control">
-                <input type="email" placeholder="Email" class="form-control">    
-                <input type="password" placeholder="Password" class="form-control">
-                <button type="submit" class="btn btn-secondary">Register</button> 
-            </form>
-		</section>
-
-		<!-- Utility -->
-		<script type="text/javascript" src="./main.js"></script>
-	</body>
-</html>
+{%block body%}
+<!-- Register -->
+<section class="container register flex">
+	<form action="/register" method="POST" class="register-form card">
+		<input type="text" autocomplete="off" autofocus placeholder="Username" class="form-control" name="username">
+		<input type="email" placeholder="Email" class="form-control" name="email">    
+		<input type="password" placeholder="Password" class="form-control" name="password">
+		<button type="submit" class="btn btn-secondary">Register</button> 
+	</form>
+</section>
+{% endblock%}

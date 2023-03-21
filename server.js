@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const express = require('express')
+const nunjucks = require('nunjucks')
 
 const app = express()
 const PORT = 5000   
@@ -27,18 +28,24 @@ const startServer = async () => {
 
         const templateDir = __dirname + '/public/templates'
 
+        //Configure nunjucks
+        nunjucks.configure(templateDir, {
+            autoescape: true,
+            express: app
+        })
+
         app.get('/', (req, res)=> {
-            res.sendFile(templateDir + '/index.html')
+            res.render(templateDir + '/index.html')
         })
 
         //login
         app.get('/login.html', (req, res)=>{
-            res.sendFile(templateDir + '/login.html')
+            res.render(templateDir + '/login.html')
         })
 
         //register
         app.get('/register.html', (req,res) => {
-            res.sendFile(templateDir + '/register.html')
+            res.render(templateDir + '/register.html')
         })
 
 
