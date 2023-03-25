@@ -6,6 +6,8 @@ const nunjucks = require('nunjucks')
 const app = express()
 const PORT = 5000   
 
+//Schema for 
+
 const startServer = async () => {
     //Connect to the database, wait for it
     try {
@@ -15,8 +17,7 @@ const startServer = async () => {
         const db = client.db('harmonee')
         console.log('Connected')
         //create collection of users
-        const usersCollection = db.collection('users')
-        
+        const users = db.collection('users')
         //use body parser before anything else
         app.use(bodyParser.urlencoded({extended: true}))
 
@@ -45,6 +46,12 @@ const startServer = async () => {
 
         //register
         app.get('/register.html', (req,res) => {
+            res.render(templateDir + '/register.html')
+        })
+
+        app.post('/register', (req, res)=>{
+            
+            console.log(req.body.username)
             res.render(templateDir + '/register.html')
         })
 
