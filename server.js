@@ -51,7 +51,7 @@ const startServer = async () => {
 
         app.post('/register', (req, res)=>{
             
-            console.log(req.body.username)
+            
             res.render(templateDir + '/register.html')
         })
 
