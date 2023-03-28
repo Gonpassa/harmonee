@@ -1,10 +1,11 @@
-const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const express = require('express')
 const nunjucks = require('nunjucks')
+const bcrypt = require('bcrypt')
 
 const app = express()
 const PORT = 5000   
+const saltRounds = 10;
 
 //Schema for 
 
@@ -19,10 +20,10 @@ const startServer = async () => {
         //create collection of users
         const users = db.collection('users')
         //use body parser before anything else
-        app.use(bodyParser.urlencoded({extended: true}))
+        app.use(express.urlencoded({extended: true}))
 
         //Make server accept JSON data
-        app.use(bodyParser.json())
+        app.use(express.json())
 
         //serve static files, literally just use this with the directory NAME NOT PATH and css and js automagically loaded
         app.use(express.static('public'))
@@ -49,10 +50,29 @@ const startServer = async () => {
             res.render(templateDir + '/register.html')
         })
 
-        app.post('/register', (req, res)=>{
-            
-            
-            res.render(templateDir + '/register.html')
+        app.post('/register', async (req, res)=>{
+            //Check if a username or email already exist in the database
+            const existingUser = await users.findOne({$or: [{username: req.body.username.toLowerCase()}, {email: req.body.email.toLowerCase()}]})
+            if(existingUser){
+                let  errorMessage;
+                if(existingUser.username === req.body.username.toLowerCase()){
+                     errorMessage = 'Username already taken'
+                    return res.render(templateDir + '/register.html', {errorMessage: errorMessage})
+                }else if((existingUser.email === req.body.email.toLowerCase()) && (req.body.email !== '')){
+                     errorMessage = 'Email already taken'
+                    return res.render(templateDir + '/register.html', {errorMessage: errorMessage})
+                }
+            }
+            //If username and email unique hash password and create new user in db
+            const salt =  bcrypt.genSaltSync(saltRounds)
+            const hash =  bcrypt.hashSync(req.body.password, salt)
+            let newUser = {
+                username: req.body.username.toLowerCase(),
+                password: hash,
+                email: req.body.email.toLowerCase()
+            }
+            await users.insertOne(newUser)
+            res.render(templateDir + '/login.html')
         })
 
 

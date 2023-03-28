@@ -6,12 +6,11 @@ Log In
 
 {%block body%}
 <!-- Register -->
-<section class="container register flex">
-	<form action="/register" method="POST" class="register-form card">
+<section class="container login flex">
+	<form action="/login" method="POST" class="register-form card">
 		<input type="text" autocomplete="off" autofocus placeholder="Username" class="form-control">
-		<input type="email" placeholder="Email" class="form-control">    
 		<input type="password" placeholder="Password" class="form-control">
-		<button type="submit" class="btn btn-secondary">Register</button> 
+		<button type="submit" class="btn btn-secondary">Login</button> 
 	</form>
 </section>
 {% endblock%}

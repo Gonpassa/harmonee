@@ -154,8 +154,7 @@
 }
 
 .alert-error{
-  background-color: var(--error-color);
-  color: #fff;
+  color: var(--error-color);
 }
 /* Margin */
 

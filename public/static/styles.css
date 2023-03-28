@@ -13,6 +13,7 @@
   --primary-color:#EBD5B3;
   --secondary-color: #1D1E18;
   --action-color: #8B0302;
+  --error-color: red;
 }
 body{
   font-family: 'EB Garamond', serif;
@@ -118,14 +119,14 @@ header{
   text-align: center;
 }
 
-/* Register */
-.register.container{
+/* Register & Login*/
+.register.container, .login.container{
   margin: 50px auto;
   width: 400px;
   height: 400px;
 }
 
-.register form{
+.register form, .login form{
   display: flex;
   flex-flow: column nowrap;
   width: 300px;
@@ -133,7 +134,7 @@ header{
   background-color: #fff;
 }
 
-.register .form-control{
+.register .form-control, .login .form-control{
   border: 0;
   width: 100%;
   font-size: 1rem;
@@ -142,9 +143,11 @@ header{
   margin-bottom: 10px;
 }
 
-.register-form input:focus{
+.register-form input:focus, .login input:focus{
   outline: none;
 }
+
+
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
