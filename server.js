@@ -45,6 +45,14 @@ const startServer = async () => {
             res.render(templateDir + '/login.html')
         })
 
+        //Login user
+        app.post('/login', async (req,res)=>{
+            const user = await users.findOne({username: req.body.username})
+            if(!user){
+                return 
+            }
+        })
+
         //register
         app.get('/register.html', (req,res) => {
             res.render(templateDir + '/register.html')
@@ -74,6 +82,7 @@ const startServer = async () => {
             await users.insertOne(newUser)
             res.render(templateDir + '/login.html')
         })
+
 
 
 
