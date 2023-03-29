@@ -2,17 +2,19 @@ const MongoClient = require('mongodb').MongoClient
 const express = require('express')
 const nunjucks = require('nunjucks')
 const bcrypt = require('bcrypt')
+require('dotenv').config()
 
 const app = express()
 const PORT = 5000   
 const saltRounds = 10;
 
+let dbConnectionStr = process.env.DB_STRING
 //Schema for 
 
 const startServer = async () => {
     //Connect to the database, wait for it
     try {
-        const client = await MongoClient.connect('mongodb+srv://gonzalopassa:47095360gG@cluster0.eqtz7we.mongodb.net/?retryWrites=true&w=majority', {useUnifiedTopology: true})
+        const client = await MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
 
         //Name database
         const db = client.db('harmonee')
