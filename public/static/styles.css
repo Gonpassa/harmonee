@@ -147,6 +147,9 @@ header{
   outline: none;
 }
 
+.login .register-form{
+  height: 150px;
+}
 
 /******************************************
 /* ADDITIONAL STYLES

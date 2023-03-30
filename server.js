@@ -49,10 +49,19 @@ const startServer = async () => {
 
         //Login user
         app.post('/login', async (req,res)=>{
+            //See if username in 
             const user = await users.findOne({username: req.body.username})
             if(!user){
-                return 
+                const errorMessage = 'Username not in file'
+                return res.render(templateDir + '/login.html', {errorMessage: errorMessage})
             }
+            const match = await bcrypt.compare(req.body.password, user.password)
+
+            if(!match){
+                const errorMessage = 'Username exists but does not match password'
+                return res.render(templateDir + '/login.html', {errorMessage: errorMessage})
+            }
+            res.render(templateDir + '/index.html')
         })
 
         //register
@@ -82,7 +91,7 @@ const startServer = async () => {
                 email: req.body.email.toLowerCase()
             }
             await users.insertOne(newUser)
-            res.render(templateDir + '/login.html')
+            res.redirect('/login.html')
         })
 
 
