@@ -1,5 +1,7 @@
 const MongoClient = require('mongodb').MongoClient
 const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
 const nunjucks = require('nunjucks')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
@@ -7,7 +9,7 @@ const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
 require('dotenv').config()
 
-const app = express()
+
 const PORT = 5000   
 const saltRounds = 10;
 const dbConnectionStr = process.env.DB_STRING
@@ -41,7 +43,7 @@ const startServer = async () => {
 
         //serve static files, literally just use this with the directory NAME NOT PATH and css and js automagically loaded
         app.use(express.static('public'))
-        const templateDir = __dirname + '/public/templates'
+        const templateDir = __dirname + '/views'
 
         //Configure nunjucks
         nunjucks.configure(templateDir, {
