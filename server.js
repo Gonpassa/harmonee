@@ -7,15 +7,32 @@ const bcrypt = require('bcrypt')
 const session = require('express-session')
 const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
-require('dotenv').config()
+const connectDB = require('./config/database')
+const mainRoutes = require('./routes/main')
+const journalRoutes = require('./routes/journal')
 
 
-const PORT = 5000   
-const saltRounds = 10;
-const dbConnectionStr = process.env.DB_STRING
+require('dotenv').config({path: './config/.env'})
 
+connectDB()
 
+app.set('view engine', 'njk')
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
+app.use(express.static('public'))
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
+//Routes
+app.use('/', mainRoutes)
+/* app.use('/journal', journalRoutes)
+ */
+
+app.listen(process.env.PORT, () => {
+    console.log(`Connected on PORT ${process.env.PORT}`)
+})
 
 const startServer = async () => {
     //Connect to the database, wait for it
@@ -133,4 +150,3 @@ const startServer = async () => {
 
 }
 
-startServer()
