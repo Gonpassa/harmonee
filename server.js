@@ -1,16 +1,20 @@
-const MongoClient = require('mongodb').MongoClient
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const nunjucks = require('nunjucks')
-const bcrypt = require('bcrypt')
+const passport = require('passport')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const nunjucks = require('nunjucks')
+const flash = require('express-flash')
+const logger = require('morgan')
 const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const journalRoutes = require('./routes/journal')
 
+//Passport config
+require('./config/passport')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -24,7 +28,21 @@ nunjucks.configure('views', {
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(logger('dev'))
+//Sessions
+app.use(
+    session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: false,
+      store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+)
+//Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
+app.use(flash())
 //Routes
 app.use('/', mainRoutes)
 /* app.use('/journal', journalRoutes)
@@ -34,7 +52,7 @@ app.listen(process.env.PORT, () => {
     console.log(`Connected on PORT ${process.env.PORT}`)
 })
 
-const startServer = async () => {
+/* const startServer = async () => {
     //Connect to the database, wait for it
     try {
         const client = await MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
@@ -150,3 +168,4 @@ const startServer = async () => {
 
 }
 
+ */

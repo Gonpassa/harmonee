@@ -1,76 +1,87 @@
+const passport = require('passport')
+const validator = require('validator')
 const User = require('../models/User')
-const bcrypt = require('bcrypt')
 
-const saltRounds = 10
-
-exports.getLogin = (req, res) => {
-    if (req.user){
-        return res.redirect('/journal')
+ exports.getLogin = (req, res) => {
+    if (req.user) {
+      return res.redirect('/')
     }
     res.render('login', {
-        title: 'Login'  
+      title: 'Login'
     })
-}
-
-exports.postLogin = async (req, res, next) => {
-    //See if username in DB
-    const user = await User.findOne({username: req.body.username.toLowerCase()})
-    if(!user){
-        const errorMessage = 'Username not registered'
-        return res.render('login', {errorMessage: errorMessage})
-    }
-    const match = await bcrypt.compare(req.body.password, user.password)
-
-    if(!match){
-        const errorMessage = 'Username exists but does not match password'
-        return res.render('login', {errorMessage: errorMessage})
-    }
-    //start session
-    req.session.username = user.username
-    res.redirect('/profile')
-}
-
-exports.getRegister = (req, res, next) => {
-    if(req.user){
-        return res.redirect('/journal')
+  }
+  
+  exports.postLogin = (req, res, next) => {
+  
+    passport.authenticate('local', (err, user, info) => {
+      if (err) { return next(err) }
+      if (!user) {
+        req.flash('errors', info)
+        return res.redirect('/login', {errorMessage: info})
+      }
+      req.logIn(user, (err) => {
+        if (err) { return next(err) }
+        req.flash('success', { msg: 'Success! You are logged in.' })
+        res.redirect('/', {username: req.user})
+      })
+    })(req, res, next)
+  }
+  
+  exports.logout = (req, res) => {
+    req.logout(() => {
+      console.log('User has logged out.')
+    })
+    req.session.destroy((err) => {
+      if (err) console.log('Error : Failed to destroy the session during logout.', err)
+      req.user = null
+      res.redirect('/')
+    })
+  }
+  
+  exports.getRegister = (req, res) => {
+    if (req.user) {
+      return res.redirect('/journal')
     }
     res.render('register', {
-        title: 'Register'
+      title: 'Register'
     })
-}
-
-exports.postRegister = async (req, res, next) => {
-    if(req.body.email === ''){
-        delete req.body.email
+  }
+  
+  exports.postRegister = (req, res, next) => {
+    const validationErrors = []
+    if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
+    if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
+    if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
+  
+    if (validationErrors.length) {
+      req.flash('errors', validationErrors)
+      return res.redirect('../register')
     }
-    const user  = new User({
-        username: req.body.username.toLowerCase(),
-        email: req.body.email ? req.body.email.toLowerCase() : undefined,
-        password: req.body.password
+    req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
+  
+    const user = new User({
+      userName: req.body.userName,
+      email: req.body.email,
+      password: req.body.password
     })
-
-
-    //Check if a username or email already exist in the database
-
-    const existingUser = await User.findOne({$or: [
-        {username: req.body.username},
-        {email: req.body.email},
-        ]})
-    if(existingUser){
-        let  errorMessage;
-        if(existingUser.username === req.body.username.toLowerCase()){
-            errorMessage = 'Username already taken'
-            console.log(errorMessage);
-            return res.render('register', {errorMessage: errorMessage})
-        }else if(existingUser.email){
-            errorMessage = 'Email already taken'
-            return res.render('register', {errorMessage: errorMessage})
-        }
-    }
-    //If username and email unique hash password and create new user in db
-    const salt =  bcrypt.genSaltSync(saltRounds)
-    user.password =  bcrypt.hashSync(req.body.password, salt)
-
-    await user.save()
-    res.redirect('/')
-}
+  
+    User.findOne({$or: [
+      {email: req.body.email},
+      {userName: req.body.userName}
+    ]}, (err, existingUser) => {
+      if (err) { return next(err) }
+      if (existingUser) {
+        req.flash('errors', { msg: 'Account with that email address or username already exists.' })
+        return res.redirect('../register')
+      }
+      user.save((err) => {
+        if (err) { return next(err) }
+        req.logIn(user, (err) => {
+          if (err) {
+            return next(err)
+          }
+          res.redirect('/')
+        })
+      })
+    })
+  }

@@ -3,10 +3,12 @@ const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, unique: true },
-  email: { type: String, unique: true },
+  email: { type: String, unique: true, sparse:true},
   password: String
 })
 
+//Allow for duplicate null values on emails
+UserSchema.index({ email: 1 }, { unique: true, sparse: true, partialFilterExpression: { email: { $type: "string" } } });
 
 // Password hash middleware.
  
