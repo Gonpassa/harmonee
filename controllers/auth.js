@@ -47,7 +47,7 @@ const User = require('../models/User')
     })
   }
   
-  exports.postRegister = (req, res, next) => {
+  exports.postRegister = async (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
@@ -64,24 +64,28 @@ const User = require('../models/User')
       email: req.body.email,
       password: req.body.password
     })
-  
+    
     User.findOne({$or: [
       {email: req.body.email},
       {userName: req.body.userName}
-    ]}, (err, existingUser) => {
-      if (err) { return next(err) }
+    ]})
+    .then(existingUser => {
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address or username already exists.' })
+        console.log('exisiting user')
         return res.redirect('../register')
       }
-      user.save((err) => {
-        if (err) { return next(err) }
-        req.logIn(user, (err) => {
+      user.save()
+      .then(() => {
+        req.logIn(user, err => {
           if (err) {
             return next(err)
           }
           res.redirect('/')
         })
       })
+      .catch(err => next(err))
     })
+    .catch(err => next(err))
+    
   }

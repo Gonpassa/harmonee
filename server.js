@@ -20,7 +20,7 @@ require('dotenv').config({path: './config/.env'})
 
 connectDB()
 
-app.set('view engine', 'njk')
+app.set('view engine', 'html')
 nunjucks.configure('views', {
     autoescape: true,
     express: app
