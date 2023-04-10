@@ -17,7 +17,7 @@ const User = require('../models/User')
       if (err) { return next(err) }
       if (!user) {
         console.log(info)
-        return res.render('login', {errorMessage: info})
+        return res.render('login', {errorMessage: info.message})
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
