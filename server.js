@@ -20,11 +20,12 @@ require('dotenv').config({path: './config/.env'})
 
 connectDB()
 
-app.set('view engine', 'html')
 nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
+app.set('view engine', 'html')
+
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())

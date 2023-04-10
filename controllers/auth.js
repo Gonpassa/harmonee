@@ -16,13 +16,13 @@ const User = require('../models/User')
     passport.authenticate('local', (err, user, info) => {
       if (err) { return next(err) }
       if (!user) {
-        req.flash('errors', info)
-        return res.redirect('/login', {errorMessage: info})
+        console.log(info)
+        return res.render('login', {errorMessage: info})
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect('/', {username: req.user})
+        res.render('index', {username: req.user})
       })
     })(req, res, next)
   }
