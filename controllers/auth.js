@@ -40,7 +40,7 @@ const User = require('../models/User')
   
   exports.getRegister = (req, res) => {
     if (req.user) {
-      return res.redirect('/journal')
+      return res.redirect('/')
     }
     res.render('register', {
       title: 'Register'
@@ -50,42 +50,41 @@ const User = require('../models/User')
   exports.postRegister = async (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
-    if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
+    if (!validator.isLength(req.body.password, { min: 4 })) validationErrors.push({ msg: 'Password must be at least 4 characters long' })
     if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
   
     if (validationErrors.length) {
-      req.flash('errors', validationErrors)
-      return res.redirect('../register')
+      return res.render('register', {errorMessage: validationErrors[0].msg})
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
     const user = new User({
-      userName: req.body.userName,
+      username: req.body.username.toLowerCase().trim(),
       email: req.body.email,
       password: req.body.password
     })
-    
-    User.findOne({$or: [
-      {email: req.body.email},
-      {userName: req.body.userName}
-    ]})
-    .then(existingUser => {
-      if (existingUser) {
-        req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-        console.log('exisiting user')
-        return res.redirect('../register')
+
+    try {
+      const existingUser = await User.findOne({$or: [{email: req.body.email}, {username: user.username}]})     
+      if(existingUser){
+        if(existingUser.username == user.username){
+        validationErrors.push({msg: 'Username already exists'})
+        return res.render('register', {errorMessage: validationErrors[0].msg})
+        }else{
+          validationErrors.push({msg: 'Email already in use'})
+          return res.render('register', {errorMessage: validationErrors[0].msg})
+        }
       }
-      user.save()
-      .then(() => {
-        req.logIn(user, err => {
-          if (err) {
-            return next(err)
-          }
-          res.redirect('/')
-        })
+
+      await user.save();
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect('/');
       })
-      .catch(err => next(err))
-    })
-    .catch(err => next(err))
-    
+    } catch (err) {
+      console.log(err)
+      return next(err)
+    }
   }

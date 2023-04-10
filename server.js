@@ -14,7 +14,7 @@ const mainRoutes = require('./routes/main')
 const journalRoutes = require('./routes/journal')
 
 //Passport config
-require('./config/passport')
+require('./config/passport')(passport)
 
 require('dotenv').config({path: './config/.env'})
 
