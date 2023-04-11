@@ -46,8 +46,8 @@ app.use(passport.session())
 app.use(flash())
 //Routes
 app.use('/', mainRoutes)
-/* app.use('/journal', journalRoutes)
- */
+app.use('/journal', journalRoutes)
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Connected on PORT ${process.env.PORT}`)

@@ -3,5 +3,23 @@
 
 {%block body%}
 <!-- Journal -->
-
+<section class="journal container flex">
+        <form action="/journal" method="POST" class="journal-form flex">
+            <h1 class="md bold">New Journal Entry</h1>
+            <h3 class="sm bold">How was your day?</h3>
+            <aside>
+                <input type="radio" name="mood" class="smiley sad" id="sad" value="sad">
+                <label for="sad"><i class="fa-solid fa-face-frown"></i></label>
+                <input type="radio" name="mood" class="smiley neutral" id="neutral" value="neutral">
+                <label for="neutral"><i class="fa-solid fa-face-meh"></i></label>
+                <input type="radio" name="mood" class="smiley happy" id="happy" value="happy">
+                <label for="happy"><i class="fa-solid fa-face-smile"></i></i></label>
+            </aside>
+            <input type="text" placeholder="Title" name="title" class="title" autocomplete="off">
+            <input type="date" name="date" class="date">
+            <textarea name="entry" id="entry" cols="30" rows="10" autocomplete="off">
+            </textarea>
+            <button type="submit" class="btn">Submit New Entry</button>
+        </form>
+</section>
 {% endblock%}	

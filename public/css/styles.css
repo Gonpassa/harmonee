@@ -151,6 +151,95 @@ header{
   height: 150px;
 }
 
+/* Journal */
+.journal.container{
+  height: 500px;
+
+}
+
+.journal-form{
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  color: var(--secondary-color);
+}
+
+.journal h3{
+  align-self: center;
+}
+
+.journal aside{
+  align-self: center;
+}
+
+.smiley{
+  display: none;
+}
+
+.smiley + label{
+  font-size: 4rem;
+  margin: 25px;
+}
+
+.sad + label{
+  color: red;
+}
+
+.neutral + label{
+  color: yellow;
+}
+
+.happy + label{
+  color: green;
+}
+
+.journal i{
+  background-color: #1D1E18;
+  border-radius: 50%;
+}
+
+input[type=radio]:checked + label i{
+  border: 3px solid rgb(0, 0, 245);
+  border-radius: 50%;
+}
+
+.title{
+  font-family: inherit;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid gray;
+  width: 100%;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.date{
+  background: none;
+  border: 0;
+  font-size: 1.2rem;
+}
+
+.date:focus{
+  border: 1px solid var(--secondary-color);
+}
+
+.journal textarea{
+  width: 100%;
+  height: 150px;
+  font-size: 1.2rem;
+}
+
+.journal textarea:focus{
+  outline: none;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
