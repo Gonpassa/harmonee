@@ -184,15 +184,15 @@ header{
 }
 
 .sad + label{
-  color: red;
+  color: hsl(18 100% 50%);
 }
 
 .neutral + label{
-  color: yellow;
+  color: hsl(44 83% 53%);
 }
 
 .happy + label{
-  color: green;
+  color: hsl(130 52% 46%);
 }
 
 .journal i{
@@ -201,7 +201,7 @@ header{
 }
 
 input[type=radio]:checked + label i{
-  border: 3px solid rgb(0, 0, 245);
+  border: 3px solid var(--secondary-color);
   border-radius: 50%;
 }
 
@@ -235,6 +235,7 @@ input[type=radio]:checked + label i{
   width: 100%;
   height: 150px;
   font-size: 1.2rem;
+  font-family: inherit;
 }
 
 .journal textarea:focus{
