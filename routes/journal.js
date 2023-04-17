@@ -5,5 +5,6 @@ const {ensureAuth} = require('../middleware/auth')
 
 router.get('/', ensureAuth, journalController.getJournal)
 router.post('/addEntry', journalController.addEntry)
+router.get('/calendar', ensureAuth, journalController.getCalendar)
 
 module.exports = router
