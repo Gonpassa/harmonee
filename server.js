@@ -47,6 +47,7 @@ app.use(flash())
 //Routes
 app.use('/', mainRoutes)
 app.use('/journal', journalRoutes)
+/* app.use('/calendar', calendarRoutes) */
 
 
 app.listen(process.env.PORT, () => {
