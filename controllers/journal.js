@@ -18,12 +18,7 @@ exports.addEntry = async (req, res) => {
 }
 
 
-//When user clicks delete button, make fetch req from client side js, get the entry id, delete it from db. 
-exports.removeEntry = async (req,res) => {
-    try {
-        
-    } catch (err) {
-        console.log(err)
-        
-    }
+
+exports.getCalendar = async (req, res) => {
+    res.render('calendar', {user: req.user})
 }

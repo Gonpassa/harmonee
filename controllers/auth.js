@@ -22,7 +22,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.render('index', {user: req.user})
+        res.render('calendar', {user: req.user})
       })
     })(req, res, next)
   }
@@ -81,7 +81,7 @@ const User = require('../models/User')
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.render('calendar', {user: req.user});
       })
     } catch (err) {
       console.log(err)
