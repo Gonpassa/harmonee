@@ -14,7 +14,9 @@ exports.addEntry = async (req, res) => {
     try {
         const now = moment().format('h:mm:ss a')
         const formattedDate = dayjs(req.body.date).format('MM-DD-YYYY')
-        const newEntry = await Entry.create({title: req.body.title.trim(), userId: req.user.id, date: formattedDate, entry: req.body.entry.trim(), mood: req.body.mood, time: now})
+        const date = formattedDate.split('-')
+        console.log(date)
+        const newEntry = await Entry.create({title: req.body.title.trim(), userId: req.user.id, month: date[0], day: date[1], year: date[2], entry: req.body.entry.trim(), mood: req.body.mood, time: now})
         console.log('New entry added')
         res.redirect('/journal')
     } catch (err) {
@@ -41,12 +43,14 @@ exports.getCalendar = async (req, res) => {
           };
         });
     }
+    const entries = await Entry.find({month: CURRENT_MONTH, year: CURRENT_YEAR, userId: req.user.id})
+
     const numberOfDays = getNumberOfDaysInMonth(CURRENT_YEAR, CURRENT_MONTH)
-    console.log(numberOfDays);
     res.render('calendar',
     {user: req.user,
     weekdays: WEEKDAYS,
     month: dayjs().format('MMMM'),
     days: numberOfDays,
+    entries: entries
 })
 }

@@ -20,6 +20,9 @@
   --grey-800: #3e4e63;
   --grid-gap: 1px;
   --day-label-size: 20px;
+  --happy-color: hsl(130 52% 46%);
+  --neutral-color: hsl(44 83% 53%);
+  --sad-color: hsl(18 100% 50%);
 }
 
 body{
@@ -338,6 +341,18 @@ input[type=radio]:checked + label i{
   height: var(--day-label-size);
 }
 
+/* moods for days */
+.happy{
+  background-color: var(--happy-color);
+}
+
+.sad{
+  background-color: var(--sad-color);
+}
+
+.neutral{
+  background-color: var(--neutral-color);
+}
 
 
 /******************************************

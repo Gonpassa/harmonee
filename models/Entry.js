@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 
 const EntrySchema = new mongoose.Schema({
     title: String,
-    date: String,
+    month: Number,
+    year: Number,
+    day: Number,
     time: String,
     mood: String,
     entry: String,
