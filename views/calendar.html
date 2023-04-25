@@ -12,11 +12,10 @@
       </div>
   
       <!-- Pagination -->
-      <div class="calendar-month-header-selectors">
-        <span id="previous-month-selector"><</span>
-        <span id="present-month-selector">Today</span>
-        <span id="next-month-selector">></span>
-      </div>
+      <form action="/calendar" method="POST">
+        <input type="date" name="date">
+        <button type="submit">Go</button>
+      </form>
     </section>
     
     <!-- Calendar grid header -->
@@ -29,7 +28,7 @@
     <!-- Calendar grid -->
     <ul id="calendar-days" class="days-grid">
       {% for i in range(1,days+1)%}
-      <li class="calendar-day {%for entry in entries%} {% if entry.day == i %} {{entry.mood}}{%endif%} {%endfor%}">{{ i }}</li>
+      <li class="calendar-day{%for entry in entries%}{% if entry.day == i %} {{entry.mood}}" data-id="{{entry._id}}{%endif%}{%endfor%}">{{ i }}</li>
       {% endfor%}
     </ul>
 </div>

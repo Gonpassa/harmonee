@@ -7,7 +7,7 @@ dayjs.extend(weekday)
 dayjs.extend(weekOfYear)
 
 exports.getJournal = (req, res) => {
-    return res.render('journal', {user: req.user})
+    return res.render('journal', {user: req.user, title: 'Journal'})
 }
 
 exports.addEntry = async (req, res) => {
@@ -26,31 +26,3 @@ exports.addEntry = async (req, res) => {
 
 
 
-exports.getCalendar = async (req, res) => {
-    //Numeric value of Month and Year
-    const CURRENT_MONTH = dayjs().format('M')
-    const CURRENT_YEAR = dayjs().format('YYYY')
-    const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    function getNumberOfDaysInMonth(year,month){
-        return dayjs(`${year}-${month}-01`).daysInMonth()
-    }
-    function createDaysForCurrentMonth(year, month) {
-        return [...Array(getNumberOfDaysInMonth(year, month))].map((day, index) => {
-          return {
-            date: dayjs(`${year}-${month}-${index + 1}`).format("YYYY-MM-DD"),
-            dayOfMonth: index + 1,
-            isCurrentMonth: true
-          };
-        });
-    }
-    const entries = await Entry.find({month: CURRENT_MONTH, year: CURRENT_YEAR, userId: req.user.id})
-
-    const numberOfDays = getNumberOfDaysInMonth(CURRENT_YEAR, CURRENT_MONTH)
-    res.render('calendar',
-    {user: req.user,
-    weekdays: WEEKDAYS,
-    month: dayjs().format('MMMM'),
-    days: numberOfDays,
-    entries: entries
-})
-}

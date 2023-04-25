@@ -13,6 +13,7 @@ const secret = crypto.randomBytes(64).toString('hex');
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const journalRoutes = require('./routes/journal')
+const calendarRoutes = require('./routes/calendar')
 
 //Passport config
 require('./config/passport')(passport)
@@ -48,7 +49,7 @@ app.use(flash())
 //Routes
 app.use('/', mainRoutes)
 app.use('/journal', journalRoutes)
-/* app.use('/calendar', calendarRoutes) */
+app.use('/calendar', calendarRoutes)
 
 
 app.listen(process.env.PORT, () => {

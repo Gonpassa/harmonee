@@ -257,9 +257,11 @@ input[type=radio]:checked + label i{
 
 .calendar-month {
   position: relative;
+  margin-top: 50px;
   /* Color of the day cell borders */
-  background-color: var(--grey-200);
+  background-color: var(--primary-color);
   border: solid 1px var(--grey-200);
+  font-family: inherit;
 }
 
 /* Month indicator and selectors positioning */
@@ -268,6 +270,9 @@ input[type=radio]:checked + label i{
   justify-content: space-between;
   background-color: #fff;
   padding: 10px;
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+  padding-right: 2rem;
 }
 
 /* Month indicator */
@@ -287,6 +292,7 @@ input[type=radio]:checked + label i{
 
 .calendar-month-header-selectors > * {
   cursor: pointer;
+  margin-left: 10px;
 }
 
 /* | Mon | Tue | Wed | Thu | Fri | Sat | Sun | */
