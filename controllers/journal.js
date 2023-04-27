@@ -15,7 +15,11 @@ exports.addEntry = async (req, res) => {
         const now = moment().format('h:mm:ss a')
         const formattedDate = dayjs(req.body.date).format('MM-DD-YYYY')
         const date = formattedDate.split('-')
-        console.log(date)
+        //Check if any existing entries for date
+        const count = await Entry.countDocuments({month: date[0], day: date[1], year: date[2] })
+        if(count != 0){
+            return res.render('journal', {user: req.user, title: 'Journal', errorMessage: 'Already submitted an entry for that date, please delete entry on that date, or pick a different date'})
+        }
         const newEntry = await Entry.create({title: req.body.title.trim(), userId: req.user.id, month: date[0], day: date[1], year: date[2], entry: req.body.entry.trim(), mood: req.body.mood, time: now})
         console.log('New entry added')
         res.redirect('/journal')

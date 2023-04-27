@@ -22,7 +22,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect('/journal/calendar')
+        res.redirect('/calendar')
       })
     })(req, res, next)
   }

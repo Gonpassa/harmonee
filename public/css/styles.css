@@ -260,7 +260,6 @@ input[type=radio]:checked + label i{
   margin-top: 50px;
   /* Color of the day cell borders */
   background-color: var(--primary-color);
-  border: solid 1px var(--grey-200);
   font-family: inherit;
 }
 
