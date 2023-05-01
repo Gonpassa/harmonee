@@ -261,6 +261,7 @@ input[type=radio]:checked + label i{
   /* Color of the day cell borders */
   background-color: var(--primary-color);
   font-family: inherit;
+  overflow: hidden;
 }
 
 /* Month indicator and selectors positioning */
@@ -370,8 +371,11 @@ input[type=radio]:checked + label i{
 
 .modal-content{
   height: 200px;
-  width: 200px;
+  width: 300px;
   background-color: #fff;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  font-size: 1.4rem;
 }
 
 /* moods for days */

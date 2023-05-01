@@ -28,5 +28,25 @@ exports.addEntry = async (req, res) => {
     }
 }
 
+exports.getSpecificEntry = async (req, res) => {
+    const entryId = req.params.id
+    try {
+        const entry = await Entry.findById(entryId).lean()
+        res.json(entry)
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+exports.deleteEntry = async (req,res) => {
+    const id  = req.params.id
+    try {
+        await Entry.findOneAndDelete({_id: id})
+        res.json(`Entry ${id} deleted`)
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 
 
