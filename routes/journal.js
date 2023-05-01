@@ -4,6 +4,7 @@ const journalController = require('../controllers/journal')
 const {ensureAuth} = require('../middleware/auth')
 
 router.get('/', ensureAuth, journalController.getJournal)
+router.get('/newEntry', journalController.newEntry)
 router.post('/addEntry', journalController.addEntry)
 router.put('/:id', journalController.getSpecificEntry)
 router.delete('/:id', journalController.deleteEntry)

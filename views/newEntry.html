@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+
+
+{%block body%}
+<!-- Journal -->
+<section class="journal container flex">
+        <form action="/journal/addEntry" method="POST" class="journal-form flex">
+            <h1 class="md bold">New Journal Entry</h1>
+            <h3 class="sm bold">How was your day?</h3>
+            <aside>
+                <input type="radio" name="mood" class="smiley sad" id="sad" value="sad" required>
+                <label for="sad"><i class="fa-solid fa-face-frown"></i></label>
+                <input type="radio" name="mood" class="smiley neutral" id="neutral" value="neutral" required>
+                <label for="neutral"><i class="fa-solid fa-face-meh"></i></label>
+                <input type="radio" name="mood" class="smiley happy" id="happy" value="happy" required>
+                <label for="happy"><i class="fa-solid fa-face-smile"></i></label>
+            </aside>
+            <input type="text" placeholder="Title" name="title" class="title" autocomplete="off">
+            <input type="date" name="date" id="date" class="date">
+            <textarea name="entry" id="entry" autocomplete="off"></textarea>
+            <button type="submit" class="btn">Submit New Entry</button>
+        </form>
+</section>
+{% if errorMessage %}
+<p class="text-center md bold alert-error">{{ errorMessage }}</p>
+{% endif %}
+<script>
+    document.getElementById('date').valueAsDate = new Date();
+</script>
+{% endblock%}	

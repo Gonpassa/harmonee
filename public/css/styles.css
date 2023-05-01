@@ -29,6 +29,10 @@ body{
   font-family: 'EB Garamond', serif;
 }
 
+body *{
+  font-family: inherit;
+}
+
 a{
   text-decoration: none;
 }
@@ -164,8 +168,10 @@ header{
 
 /* Journal */
 .journal.container{
-  height: 500px;
-
+  height: 100vh;
+  overflow: hidden;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .journal-form{
@@ -381,17 +387,56 @@ input[type=radio]:checked + label i{
 /* moods for days */
 .happy{
   background-color: var(--happy-color);
+
+
 }
 
 .sad{
   background-color: var(--sad-color);
+
 }
 
 .neutral{
   background-color: var(--neutral-color);
+
 }
 
+/* Journal */
+.journal > a{
+  margin-top: 25px;
+}
 
+.journal h1{
+  color: #1D1E18;
+}
+
+.pastEntry{
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  height: 250px;
+  width: 100%;
+  align-items: flex-start;
+  border-bottom: 1px solid gray;
+  color: var(--secondary-color);
+}
+
+.smiley-happy{
+  background-color: var(--secondary-color);
+  color: var(--happy-color);
+  font-size: 3rem;
+}
+
+.smiley-sad{
+  background-color: var(--secondary-color);
+  color: var(--sad-color);
+  font-size: 3rem;
+}
+
+.smiley-neutral{
+  background-color: var(--secondary-color);
+  color: var(--neutral-color);
+  font-size: 3rem;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/

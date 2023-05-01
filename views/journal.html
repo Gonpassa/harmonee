@@ -4,22 +4,23 @@
 {%block body%}
 <!-- Journal -->
 <section class="journal container flex">
-        <form action="/journal/addEntry" method="POST" class="journal-form flex">
-            <h1 class="md bold">New Journal Entry</h1>
-            <h3 class="sm bold">How was your day?</h3>
-            <aside>
-                <input type="radio" name="mood" class="smiley sad" id="sad" value="sad" required>
-                <label for="sad"><i class="fa-solid fa-face-frown"></i></label>
-                <input type="radio" name="mood" class="smiley neutral" id="neutral" value="neutral" required>
-                <label for="neutral"><i class="fa-solid fa-face-meh"></i></label>
-                <input type="radio" name="mood" class="smiley happy" id="happy" value="happy" required>
-                <label for="happy"><i class="fa-solid fa-face-smile"></i></i></label>
-            </aside>
-            <input type="text" placeholder="Title" name="title" class="title" autocomplete="off">
-            <input type="date" name="date" id="date" class="date">
-            <textarea name="entry" id="entry" autocomplete="off"></textarea>
-            <button type="submit" class="btn">Submit New Entry</button>
-        </form>
+    <a href="/journal/newEntry" class="btn text-center">Add New Entry</a>
+    <h1 class="lg">Past Entries:</h1>
+    {% for entry in entries %}
+        <section class="flex pastEntry">
+            {% if entry.mood == 'happy' %}
+            <i class="fa-solid fa-face-smile smiley-happy"></i>
+            {% elif entry.mood == 'sad' %}
+            <i class="fa-solid fa-face-frown smiley-sad"></i>
+            {% else %}
+            <i class="fa-solid fa-face-meh smiley-neutral"></i>
+            {% endif %}
+            <h2 class="md bold">{{entry.title}}</h2>
+            <span class="sm">{{entry.month}}-{{entry.day}}-{{entry.year}}</span>
+            <p class="sm">{{entry.entry}}</p>
+            <br>
+        </section>
+    {% endfor %}
 </section>
 {% if errorMessage %}
 <p class="text-center md bold alert-error">{{ errorMessage }}</p>
