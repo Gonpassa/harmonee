@@ -25,7 +25,7 @@ async function showModal(){
         console.log(err);
     } 
     document.querySelector('.fa-trash').addEventListener('click', deleteEntry)
-    document.querySelector('.modal').classList.toggle('hidden')
+    document.querySelector('.modal').classList.toggle('hidden') 
 
 }
 
