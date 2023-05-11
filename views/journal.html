@@ -3,9 +3,12 @@
 
 {%block body%}
 <!-- Journal -->
-<section class="journal container flex">
+<section class="above container flex">
     <a href="/journal/newEntry" class="btn text-center">Add New Entry</a>
     <h1 class="lg">Past Entries:</h1>
+</section>
+
+<section class="entries container grid">
     {% for entry in entries %}
         <section class="flex pastEntry">
             {% if entry.mood == 'happy' %}
@@ -16,9 +19,8 @@
             <i class="fa-solid fa-face-meh smiley-neutral"></i>
             {% endif %}
             <h2 class="md bold">{{entry.title}}</h2>
-            <span class="sm">{{entry.month}}-{{entry.day}}-{{entry.year}}</span>
+            <span class="sm bold">{{entry.month}}-{{entry.day}}-{{entry.year}}</span>
             <p class="sm">{{entry.entry}}</p>
-            <br>
         </section>
     {% endfor %}
 </section>
@@ -26,6 +28,6 @@
 <p class="text-center md bold alert-error">{{ errorMessage }}</p>
 {% endif %}
 <script>
-    document.getElementById('date').valueAsDate = new Date();
+
 </script>
 {% endblock%}	

@@ -16,7 +16,6 @@ async function showModal(){
             })
         })
         const data = await response.json();
-        console.log(data);
         const content = document.querySelector('.modal-content')
         content.innerHTML = `<h3>${data.title}</h3>
         <a href="/journal/${data._id}"> Edit </a>

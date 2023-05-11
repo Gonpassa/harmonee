@@ -28,7 +28,7 @@ exports.addEntry = async (req, res) => {
         //Check if any existing entries for date
         const count = await Entry.countDocuments({month: date[0], day: date[1], year: date[2] })
         if(count != 0){
-            return res.render('journal', {user: req.user, title: 'Journal', errorMessage: 'Already submitted an entry for that date, please delete entry on that date, or pick a different date'})
+            return res.render('newEntry', {user: req.user, title: 'Journal', errorMessage: 'Already submitted an entry for that date, please delete entry on that date, or pick a different date'})
         }
         const newEntry = await Entry.create({title: req.body.title.trim(), userId: req.user.id, month: date[0], day: date[1], year: date[2], entry: req.body.entry.trim(), mood: req.body.mood, time: now})
         console.log('New entry added')

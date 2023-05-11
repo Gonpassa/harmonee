@@ -56,7 +56,9 @@ exports.getCalendar = async (req, res) => {
 exports.getSpecificMonth = async (req, res) => {
     try{
     const date = req.body.date
+    console.log(date);
     const MONTH = dayjs(date).format('M')
+    console.log(dayjs(date).format('MMMM'));
     const YEAR = dayjs(date).format('YYYY')
     const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
@@ -70,7 +72,7 @@ exports.getSpecificMonth = async (req, res) => {
         return  res.render('calendar',
         {user: req.user,
         weekdays: WEEKDAYS,
-        month: dayjs().format('MMMM'),
+        month: dayjs(date).format('MMMM'),
         days: numberOfDays,
         entries: entries,
         title: 'Calendar'
@@ -79,7 +81,7 @@ exports.getSpecificMonth = async (req, res) => {
         return  res.render('calendar',
         {user: req.user,
         weekdays: WEEKDAYS.reverse(),
-        month: dayjs().format('MMMM'),
+        month: dayjs(date).format('MMMM'),
         days: numberOfDays,
         entries: entries,
         title: 'Calendar'
@@ -92,7 +94,7 @@ exports.getSpecificMonth = async (req, res) => {
     res.render('calendar',
     {user: req.user,
     weekdays: week,
-    month: dayjs(MONTH).format('MMMM'),
+    month: dayjs(date).format('MMMM'),
     days: numberOfDays,
     entries: entries,
     title: 'Calendar'

@@ -168,10 +168,8 @@ header{
 
 /* Journal */
 .journal.container{
-  height: 100vh;
+  height: 800px;
   overflow: hidden;
-  flex-flow: column nowrap;
-  justify-content: space-between;
 }
 
 .journal-form{
@@ -242,6 +240,7 @@ input[type=radio]:checked + label i{
   background: none;
   border: 0;
   font-size: 1.2rem;
+  padding: 5px;
 }
 
 .date:focus{
@@ -253,6 +252,8 @@ input[type=radio]:checked + label i{
   height: 150px;
   font-size: 1.2rem;
   font-family: inherit;
+  border-radius: 9px;
+  padding: 5px;
 }
 
 .journal textarea:focus{
@@ -402,8 +403,20 @@ input[type=radio]:checked + label i{
 }
 
 /* Journal */
-.journal > a{
-  margin-top: 25px;
+
+.entries{
+  padding-top: 20px;
+  overflow: visible;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.above{
+  height: 100px;
+  flex-flow: column nowrap;
+}
+
+.above h1{
+  color: var(--secondary-color);
 }
 
 .journal h1{
@@ -416,8 +429,23 @@ input[type=radio]:checked + label i{
   height: 250px;
   width: 100%;
   align-items: flex-start;
-  border-bottom: 1px solid gray;
+  border: 1px solid var(--action-color);
+  border-radius: 9px;
   color: var(--secondary-color);
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 3px var(--secondary-color);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.pastEntry .fa-solid{
+  align-self: center;
+  position: relative;
+  border-radius: 50%;
+}
+
+.pastEntry p{
+  overflow: hidden;
 }
 
 .smiley-happy{

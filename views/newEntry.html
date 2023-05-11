@@ -3,7 +3,11 @@
 
 {%block body%}
 <!-- Journal -->
+{% if errorMessage %}
+<p class="text-center md bold alert-error">{{ errorMessage }}</p>
+{% endif %}
 <section class="journal container flex">
+
         <form action="/journal/addEntry" method="POST" class="journal-form flex">
             <h1 class="md bold">New Journal Entry</h1>
             <h3 class="sm bold">How was your day?</h3>
@@ -21,9 +25,7 @@
             <button type="submit" class="btn">Submit New Entry</button>
         </form>
 </section>
-{% if errorMessage %}
-<p class="text-center md bold alert-error">{{ errorMessage }}</p>
-{% endif %}
+
 <script>
     document.getElementById('date').valueAsDate = new Date();
 </script>
