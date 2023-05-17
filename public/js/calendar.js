@@ -8,17 +8,11 @@ filledDays.forEach(day => {
 async function showModal(){
     const id = this.dataset.id
     try {
-        const response = await fetch(`/journal/${id}`, {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'entryId': id
-            })
-        })
+        const response = await fetch(`/journal/${id}`)
         const data = await response.json();
         const content = document.querySelector('.modal-content')
         content.innerHTML = `<h3>${data.title}</h3>
-        <a href="/journal/${data._id}"> Edit </a>
+        <a href="/edit/${data._id}"> Edit </a>
         <i data-id="${id}" class="fa-solid fa-trash"></i>`
     } catch (err) {
         console.log(err);

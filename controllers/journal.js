@@ -9,7 +9,6 @@ dayjs.extend(weekOfYear)
 exports.getJournal = async (req, res) => {
     try {
         const entries = await Entry.find({userId: req.user.id}).sort({year: -1, month: -1, day: -1}).lean()
-        console.log(entries);
         return res.render('journal', {user: req.user, title: 'Journal', entries: entries})
     } catch (err) {
         console.log(err);
@@ -57,6 +56,4 @@ exports.deleteEntry = async (req,res) => {
         console.log(err);
     }
 }
-
-
 

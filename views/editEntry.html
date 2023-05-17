@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+
+
+{%block body%}
+<!-- Journal -->
+{% if errorMessage %}
+<p class="text-center md bold alert-error">{{ errorMessage }}</p>
+{% endif %}
+<section class="journal container flex">
+        <form action="/edit/{{entry._id}}?_method=PUT" method="POST" class="journal-form flex edit">
+            <h1 class="md bold">Edit Journal Entry</h1>
+            <h3 class="sm bold">How was your day?</h3>
+            <aside>
+                <input type="radio" name="mood" class="smiley sad" id="sad" value="sad" required>
+                <label for="sad"><i class="fa-solid fa-face-frown"></i></label>
+                <input type="radio" name="mood" class="smiley neutral" id="neutral" value="neutral" required>
+                <label for="neutral"><i class="fa-solid fa-face-meh"></i></label>
+                <input type="radio" name="mood" class="smiley happy" id="happy" value="happy" required>
+                <label for="happy"><i class="fa-solid fa-face-smile"></i></label>
+            </aside>
+            <input type="text" placeholder="Title" name="title" class="title" autocomplete="off" value="{{entry.title}}">
+            <h3 class="sm bold">{{entry.year}}-{{entry.month}}-{{entry.day}}</h3>
+            <textarea name="entry" id="entry" autocomplete="off">{{entry.entry}}</textarea>
+            <button type="submit" class="btn">Edit Entry</button>
+        </form>
+</section>
+
+<script>
+</script>
+{% endblock%}	
