@@ -21,7 +21,7 @@ exports.editEntry = async (req, res) => {
                 entry: req.body.entry,
                 mood: req.body.mood
     })
-    res.redirect('../calendar')
+    res.redirect('../calendar') 
     } catch (err) {
         console.log(err);
     }
