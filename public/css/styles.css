@@ -1,18 +1,17 @@
 /******************************************
 /* CSS
 /*******************************************/
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap");
 /* Box Model Hack */
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-
 /* Global Styles */
-:root{
-  --primary-color:#EBD5B3;
-  --secondary-color: #1D1E18;
-  --action-color: #8B0302;
+:root {
+  --primary-color: #ebd5b3;
+  --secondary-color: #1d1e18;
+  --action-color: #8b0302;
   --error-color: red;
   --grey-100: #e4e9f0;
   --grey-200: #cfd7e3;
@@ -25,43 +24,42 @@
   --sad-color: hsl(18 100% 50%);
 }
 
-body{
-  font-family: 'EB Garamond', serif;
+body {
+  font-family: "EB Garamond", serif;
 }
 
-body *{
+body * {
   font-family: inherit;
 }
 
-a{
+a {
   text-decoration: none;
 }
-
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-img{
+img {
   display: block;
   margin: 0 auto;
 }
 /* Navbar */
 
-header{
+header {
   width: 100%;
   height: 80px;
 }
 
-.navbar{
+.navbar {
   height: 100%;
 }
-.navbar .flex{
+.navbar .flex {
   height: 100%;
   justify-content: space-between;
   width: 100%;
 }
 
-.navbar img{
+.navbar img {
   height: 60px;
   width: 66px;
   background-size: contain;
@@ -70,23 +68,22 @@ header{
   margin: 0;
 }
 
-
-.navbar li{
+.navbar li {
   display: inline;
   margin-right: 20px;
 }
 
-.navbar a{
+.navbar a {
   text-decoration: none;
   padding: 5px;
 }
 
-.navbar a:hover{
+.navbar a:hover {
   border-bottom: 1px var(--primary-color) solid;
 }
 
 /* Hero */
-.container.hero{
+.container.hero {
   height: 500px;
   margin-top: 2rem;
   justify-content: space-around;
@@ -94,54 +91,54 @@ header{
   background-color: var(--primary-color);
 }
 
-.hero article.flex{
+.hero article.flex {
   flex-flow: column nowrap;
   align-items: flex-start;
 }
 
-.hero-image{
+.hero-image {
   height: 66%;
   width: 60%;
   border-radius: 50%;
   padding-left: 90px;
-  background-image: url('../images/Harmony.png');
+  background-image: url("../images/Harmony.png");
   background-size: contain;
   background-position: center;
   background-repeat: repeat;
 }
 
 /* Utility */
-.utility{
+.utility {
   width: 100%;
   height: 400px;
 }
 
-.utility .container{
+.utility .container {
   grid-template-columns: repeat(3, 1fr);
   margin-top: 1rem;
   padding: 10px;
-
 }
 
-.utility .container .flex{
+.utility .container .flex {
   flex-flow: column nowrap;
   justify-content: center;
 }
 
-
-.utility .container .flex p{
+.utility .container .flex p {
   width: 70%;
   text-align: center;
 }
 
 /* Register & Login*/
-.register.container, .login.container{
+.register.container,
+.login.container {
   margin: 50px auto;
   width: 400px;
   height: 400px;
 }
 
-.register form, .login form{
+.register form,
+.login form {
   display: flex;
   flex-flow: column nowrap;
   width: 300px;
@@ -149,30 +146,32 @@ header{
   background-color: #fff;
 }
 
-.register .form-control, .login .form-control{
+.register .form-control,
+.login .form-control {
   border: 0;
   width: 100%;
   font-size: 1rem;
   padding: 3px;
-  border-bottom: 1px solid #1D1E18;
+  border-bottom: 1px solid #1d1e18;
   margin-bottom: 10px;
 }
 
-.register-form input:focus, .login input:focus{
+.register-form input:focus,
+.login input:focus {
   outline: none;
 }
 
-.login .register-form{
+.login .register-form {
   height: 150px;
 }
 
 /* Journal */
-.journal.container{
+.journal.container {
   height: 800px;
   overflow: hidden;
 }
 
-.journal-form{
+.journal-form {
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: flex-start;
@@ -181,46 +180,46 @@ header{
   color: var(--secondary-color);
 }
 
-.journal h3{
+.journal h3 {
   align-self: center;
 }
 
-.journal aside{
+.journal aside {
   align-self: center;
 }
 
-.smiley{
+.smiley {
   display: none;
 }
 
-.smiley + label{
+.smiley + label {
   font-size: 4rem;
   margin: 25px;
 }
 
-.sad + label{
+.sad + label {
   color: hsl(18 100% 50%);
 }
 
-.neutral + label{
+.neutral + label {
   color: hsl(44 83% 53%);
 }
 
-.happy + label{
+.happy + label {
   color: hsl(130 52% 46%);
 }
 
-.journal i{
-  background-color: #1D1E18;
+.journal i {
+  background-color: #1d1e18;
   border-radius: 50%;
 }
 
-input[type=radio]:checked + label i{
+input[type="radio"]:checked + label i {
   border: 3px solid var(--secondary-color);
   border-radius: 50%;
 }
 
-.title{
+.title {
   font-family: inherit;
   font-weight: bold;
   padding: 10px;
@@ -236,18 +235,18 @@ input[type=radio]:checked + label i{
   outline: none;
 }
 
-.date{
+.date {
   background: none;
   border: 0;
   font-size: 1.2rem;
   padding: 5px;
 }
 
-.date:focus{
+.date:focus {
   border: 1px solid var(--secondary-color);
 }
 
-.journal textarea{
+.journal textarea {
   width: 100%;
   height: 150px;
   font-size: 1.2rem;
@@ -256,7 +255,7 @@ input[type=radio]:checked + label i{
   padding: 5px;
 }
 
-.journal textarea:focus{
+.journal textarea:focus {
   outline: none;
 }
 
@@ -286,7 +285,7 @@ input[type=radio]:checked + label i{
 .calendar-month-header-selected-month {
   font-size: 24px;
   font-weight: 600;
-  color: #1D1E18;
+  color: #1d1e18;
 }
 
 /* Month selectors positioning */
@@ -342,14 +341,13 @@ input[type=radio]:checked + label i{
   padding: 5px;
   display: inline-block;
   overflow: hidden;
-
 }
 
-.calendar-day:hover{
+.calendar-day:hover {
   transform: scale(1.2);
   border: 1px solid var(--secondary-color);
   z-index: 2;
-  cursor:pointer
+  cursor: pointer;
 }
 
 /* Position the day label within the day cell */
@@ -364,7 +362,7 @@ input[type=radio]:checked + label i{
 }
 
 /* Modal for Calendar days */
-.modal{
+.modal {
   position: fixed;
   margin: 0;
   z-index: 2;
@@ -373,10 +371,10 @@ input[type=radio]:checked + label i{
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content{
+.modal-content {
   height: 200px;
   width: 300px;
   background-color: #fff;
@@ -386,44 +384,40 @@ input[type=radio]:checked + label i{
 }
 
 /* moods for days */
-.happy{
+.happy {
   background-color: var(--happy-color);
-
-
 }
 
-.sad{
+.sad {
   background-color: var(--sad-color);
-
 }
 
-.neutral{
+.neutral {
   background-color: var(--neutral-color);
-
 }
 
 /* Journal */
 
-.entries{
+.entries {
   padding-top: 20px;
   overflow: visible;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.above{
+.above {
   height: 100px;
   flex-flow: column nowrap;
 }
 
-.above h1{
+.above h1 {
   color: var(--secondary-color);
 }
 
-.journal h1{
-  color: #1D1E18;
+.journal h1 {
+  color: #1d1e18;
 }
 
-.pastEntry{
+.pastEntry {
   flex-flow: column nowrap;
   justify-content: space-around;
   height: 250px;
@@ -438,29 +432,29 @@ input[type=radio]:checked + label i{
   cursor: pointer;
 }
 
-.pastEntry .fa-solid{
+.pastEntry .fa-solid {
   align-self: center;
   position: relative;
   border-radius: 50%;
 }
 
-.pastEntry p{
+.pastEntry p {
   overflow: hidden;
 }
 
-.smiley-happy{
+.smiley-happy {
   background-color: var(--secondary-color);
   color: var(--happy-color);
   font-size: 3rem;
 }
 
-.smiley-sad{
+.smiley-sad {
   background-color: var(--secondary-color);
   color: var(--sad-color);
   font-size: 3rem;
 }
 
-.smiley-neutral{
+.smiley-neutral {
   background-color: var(--secondary-color);
   color: var(--neutral-color);
   font-size: 3rem;
