@@ -437,6 +437,8 @@ input[type="radio"]:checked + label i {
   padding-top: 20px;
   overflow: visible;
   grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  height: auto;
 }
 
 .above {
