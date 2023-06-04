@@ -107,6 +107,13 @@ header {
   background-repeat: repeat;
 }
 
+.hero article h1 {
+  width: 80%;
+}
+
+.hero article p {
+  width: 75%;
+}
 /* Utility */
 .utility {
   width: 100%;
@@ -253,6 +260,8 @@ input[type="radio"]:checked + label i {
   font-family: inherit;
   border-radius: 9px;
   padding: 5px;
+  resize: vertical;
+  overflow: auto;
 }
 
 .journal textarea:focus {
@@ -462,3 +471,57 @@ input[type="radio"]:checked + label i {
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+  .entries.container.grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .entries.container.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero {
+    flex-flow: column nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero article.flex {
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .hero article.flex h1,
+  .hero article.flex p {
+    width: 100%;
+  }
+  .hero-image {
+    width: 100%;
+    border-radius: 20%;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .navbar .container ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    height: 70%;
+    margin-top: 15px;
+  }
+
+  .navbar {
+    overflow: auto;
+  }
+  header {
+    overflow: auto;
+  }
+
+  .navbar a:hover {
+    border: none;
+  }
+}
