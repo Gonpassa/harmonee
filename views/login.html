@@ -1,16 +1,29 @@
-{% extends "template.html" %}
-
-
-{%block body%}
+{% extends "template.html" %} {%block body%}
 <!-- Log in -->
 <section class="container login flex">
-	<form action="/login" method="POST" class="register-form card">
-		<input type="text" autocomplete="off" autofocus placeholder="Username" class="form-control" name="username">
-		<input type="password" placeholder="Password" class="form-control" name="password">
-		<button type="submit" class="btn btn-secondary">Login</button> 
-	</form>
+  <div>
+    <h2>Login</h2>
+  </div>
+  <section>
+    <form action="/login" method="POST" class="register-form">
+      <input
+        type="text"
+        autocomplete="off"
+        autofocus
+        placeholder="Username"
+        class="form-control"
+        name="username"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        class="form-control"
+        name="password"
+      />
+      <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+  </section>
 </section>
 {% if errorMessage %}
-	<p class="text-center md bold alert-error">{{ errorMessage }}</p>
-{% endif %}
-{% endblock%}
+<p class="text-center md bold alert-error">{{ errorMessage }}</p>
+{% endif %} {% endblock%}

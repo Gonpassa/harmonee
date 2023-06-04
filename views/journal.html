@@ -1,33 +1,27 @@
-{% extends "template.html" %}
-
-
-{%block body%}
+{% extends "template.html" %} {%block body%}
 <!-- Journal -->
 <section class="above container flex">
-    <a href="/journal/newEntry" class="btn text-center">Add New Entry</a>
-    <h1 class="lg">Past Entries:</h1>
+  <a href="/journal/newEntry" class="btn text-center">Add New Entry</a>
 </section>
 
 <section class="entries container grid">
-    {% for entry in entries %}
-        <section class="flex pastEntry">
-            {% if entry.mood == 'happy' %}
-            <i class="fa-solid fa-face-smile smiley-happy"></i>
-            {% elif entry.mood == 'sad' %}
-            <i class="fa-solid fa-face-frown smiley-sad"></i>
-            {% else %}
-            <i class="fa-solid fa-face-meh smiley-neutral"></i>
-            {% endif %}
-            <h2 class="md bold">{{entry.title}}</h2>
-            <span class="sm bold">{{entry.month}}-{{entry.day}}-{{entry.year}}</span>
-            <p class="sm">{{entry.entry}}</p>
-        </section>
-    {% endfor %}
+  {% for entry in entries %}
+  <section class="flex pastEntry" data-id="{{entry._id}}">
+    {% if entry.mood == 'happy' %}
+    <i class="fa-solid fa-face-smile smiley-happy"></i>
+    {% elif entry.mood == 'sad' %}
+    <i class="fa-solid fa-face-frown smiley-sad"></i>
+    {% else %}
+    <i class="fa-solid fa-face-meh smiley-neutral"></i>
+    {% endif %}
+    <h2 class="md bold">{{entry.title}}</h2>
+    <span class="sm bold">{{entry.month}}-{{entry.day}}-{{entry.year}}</span>
+    <p class="sm">{{entry.entry}}</p>
+  </section>
+  {% endfor %}
 </section>
 {% if errorMessage %}
 <p class="text-center md bold alert-error">{{ errorMessage }}</p>
 {% endif %}
-<script>
-
-</script>
-{% endblock%}	
+<script></script>
+{% endblock%}

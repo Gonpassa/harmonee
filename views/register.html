@@ -1,18 +1,43 @@
-{% extends "template.html" %}
-
-
-{%block body%}
+{% extends "template.html" %} {%block body%}
 <!-- Register -->
 <section class="container register flex">
-	<form action="/register" method="POST" class="register-form card">
-		<input type="text" autocomplete="off" autofocus placeholder="Username" class="form-control" name="username" required>
-		<input type="email" placeholder="Email" class="form-control" name="email">    
-		<input type="password" placeholder="Password" class="form-control" name="password" aria-required="">
-		<input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword">	
-		<button type="submit" class="btn btn-secondary">Register</button> 
-	</form>
+  <div>
+    <h2>Register Your Account</h2>
+  </div>
+  <section>
+    <form action="/register" method="POST" class="register-form">
+      <input
+        type="text"
+        autocomplete="off"
+        autofocus
+        placeholder="Username"
+        class="form-control"
+        name="username"
+        required
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        class="form-control"
+        name="email"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        class="form-control"
+        name="password"
+        aria-required=""
+      />
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Confirm Password"
+        name="confirmPassword"
+      />
+      <button type="submit" class="btn btn-secondary">Register</button>
+    </form>
+  </section>
 </section>
 {% if errorMessage %}
-	<p class="text-center md bold alert-error">{{errorMessage}}</p>
-{% endif %}
-{% endblock%}	
+<p class="text-center md bold alert-error">{{errorMessage}}</p>
+{% endif %} {% endblock%}
