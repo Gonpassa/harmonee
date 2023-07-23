@@ -2,7 +2,7 @@
 
 Journaling fullstack application
 
-**Link to project:** (need to deploy)
+**Link to project:** [Live](https://harmonee.fly.dev/)
 
 ![Harmonee](https://github.com/Gonpassa/harmonee/blob/main/Screenshot.jpg?raw=true)
 
