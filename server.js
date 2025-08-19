@@ -53,6 +53,6 @@ app.use("/journal", journalRoutes);
 app.use("/calendar", calendarRoutes);
 app.use("/edit", editRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Connected on PORT ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Connected on PORT ${process.env.PORT || 3000}`);
 });
