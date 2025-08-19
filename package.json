@@ -11,6 +11,7 @@
   "author": "Gonzalo Passa",
   "license": "ISC",
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.4",
     "nodemon": "^2.0.21"
   },
   "dependencies": {
